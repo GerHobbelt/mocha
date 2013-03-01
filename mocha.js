@@ -2490,6 +2490,7 @@ exports.JSONCov = require('./json-cov');
 exports.HTMLCov = require('./html-cov');
 exports.JSONStream = require('./json-stream');
 exports.Teamcity = require('./teamcity');
+exports.OnDemandHTMLCov = require('./on-demand-html-cov');
 
 }); // module: reporters/index.js
 
@@ -2650,70 +2651,6 @@ function clean(test) {
 
 }); // module: reporters/json-cov.js
 
-require.register("reporters/json-stream.js", function(module, exports, require){
-
-/**
- * Module dependencies.
- */
-
-var Base = require('./base')
-  , color = Base.color;
-
-/**
- * Expose `List`.
- */
-
-exports = module.exports = List;
-
-/**
- * Initialize a new `List` test reporter.
- *
- * @param {Runner} runner
- * @api public
- */
-
-function List(runner) {
-  Base.call(this, runner);
-
-  var self = this
-    , stats = this.stats
-    , total = runner.total;
-
-  runner.on('start', function(){
-    console.log(JSON.stringify(['start', { total: total }]));
-  });
-
-  runner.on('pass', function(test){
-    console.log(JSON.stringify(['pass', clean(test)]));
-  });
-
-  runner.on('fail', function(test, err){
-    console.log(JSON.stringify(['fail', clean(test)]));
-  });
-
-  runner.on('end', function(){
-    process.stdout.write(JSON.stringify(['end', self.stats]));
-  });
-}
-
-/**
- * Return a plain-object representation of `test`
- * free of cyclic properties etc.
- *
- * @param {Object} test
- * @return {Object}
- * @api private
- */
-
-function clean(test) {
-  return {
-      title: test.title
-    , fullTitle: test.fullTitle()
-    , duration: test.duration
-  }
-}
-}); // module: reporters/json-stream.js
-
 require.register("reporters/json.js", function(module, exports, require){
 
 /**
@@ -2786,6 +2723,70 @@ function clean(test) {
   }
 }
 }); // module: reporters/json.js
+
+require.register("reporters/json-stream.js", function(module, exports, require){
+
+/**
+ * Module dependencies.
+ */
+
+var Base = require('./base')
+  , color = Base.color;
+
+/**
+ * Expose `List`.
+ */
+
+exports = module.exports = List;
+
+/**
+ * Initialize a new `List` test reporter.
+ *
+ * @param {Runner} runner
+ * @api public
+ */
+
+function List(runner) {
+  Base.call(this, runner);
+
+  var self = this
+    , stats = this.stats
+    , total = runner.total;
+
+  runner.on('start', function(){
+    console.log(JSON.stringify(['start', { total: total }]));
+  });
+
+  runner.on('pass', function(test){
+    console.log(JSON.stringify(['pass', clean(test)]));
+  });
+
+  runner.on('fail', function(test, err){
+    console.log(JSON.stringify(['fail', clean(test)]));
+  });
+
+  runner.on('end', function(){
+    process.stdout.write(JSON.stringify(['end', self.stats]));
+  });
+}
+
+/**
+ * Return a plain-object representation of `test`
+ * free of cyclic properties etc.
+ *
+ * @param {Object} test
+ * @return {Object}
+ * @api private
+ */
+
+function clean(test) {
+  return {
+      title: test.title
+    , fullTitle: test.fullTitle()
+    , duration: test.duration
+  }
+}
+}); // module: reporters/json-stream.js
 
 require.register("reporters/landing.js", function(module, exports, require){
 
@@ -3368,6 +3369,81 @@ NyanCat.prototype.constructor = NyanCat;
 
 
 }); // module: reporters/nyan.js
+
+require.register("reporters/on-demand-html-cov.js", function(module, exports, require){
+
+/**
+ * Module dependencies.
+ */
+var EventEmitter = require('browser/events').EventEmitter
+var path = require('browser/path');
+
+var JSONCov = require('./json-cov')
+  , fs = require('browser/fs');
+
+/**
+ * Expose `OnDemandOnDemandHTMLCov`.
+ */
+
+exports = module.exports = OnDemandHTMLCov;
+
+/**
+ * Initialize a new `JsCoverage` reporter.
+ *
+ * @param {Runner} runner
+ * @api public
+ */
+
+function OnDemandHTMLCov(runner) {
+  var jade = require('jade')
+    , file = __dirname + '/templates/coverage.jade'
+    , str = fs.readFileSync(file, 'utf8')
+    , fn = jade.compile(str, { filename: file })
+    , self = this;
+
+  process.on('SIGUSR1', function() {
+    var mockRunner = new EventEmitter();
+
+    JSONCov.call(self, mockRunner, false);
+
+    mockRunner.on('end', function() {
+      var html = fn({
+          cov: self.cov
+        , coverageClass: coverageClass
+      });
+
+      // write out the HTML to a file
+      var outputFile = "coverage-report-" + process.pid + "-" + Date.now() + ".html";
+      fs.writeFileSync(path.join(process.cwd(), outputFile), html);
+      self.emit('output', outputFile);
+    });
+
+    // trigger the output
+    mockRunner.emit('end');
+  });
+}
+
+// inherit from EventEmitter
+function F(){};
+F.prototype = EventEmitter.prototype;
+OnDemandHTMLCov.prototype = new F;
+OnDemandHTMLCov.prototype.constructor = OnDemandHTMLCov;
+
+
+/**
+ * Return coverage class for `n`.
+ *
+ * @return {String}
+ * @api private
+ */
+
+function coverageClass(n) {
+  if (n >= 75) return 'high';
+  if (n >= 50) return 'medium';
+  if (n >= 25) return 'low';
+  return 'terrible';
+}
+}); // module: reporters/on-demand-html-cov.js
 
 require.register("reporters/progress.js", function(module, exports, require){
 
@@ -4246,7 +4322,7 @@ Runner.prototype.fail = function(test, err){
   if ('string' == typeof err) {
     err = new Error('the string "' + err + '" was thrown, throw an Error :)');
   }
-  
+
   this.emit('fail', test, err);
 };
 
@@ -4544,10 +4620,11 @@ Runner.prototype.uncaught = function(err){
 
 Runner.prototype.run = function(fn){
   var self = this
-    , fn = fn || function(){}
-    , uncaught = function(err){
-      self.uncaught(err);
-    };
+    , fn = fn || function(){};
+
+  function uncaught(err){
+    self.uncaught(err);
+  }
 
   debug('start');
 
