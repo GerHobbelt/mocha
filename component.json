@@ -1,7 +1,7 @@
 {
   "name": "mocha",
-  "version": "1.11.0",
-  "repo": "visionmedia/mocha",
+  "version": "1.11.2",
+  "repo": "mocha-breve/mocha-breve",
   "description": "simple, flexible, fun test framework",
   "keywords": [
     "mocha",
