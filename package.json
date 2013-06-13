@@ -1,7 +1,7 @@
 {
-  "name": "mocha",
+  "name": "mocha-breve",
   "version": "1.11.0",
-  "description": "simple, flexible, fun test framework",
+  "description": "simple, flexible, fun test framework by and for the javascript community",
   "keywords": [
     "mocha",
     "test",
@@ -9,10 +9,10 @@
     "tdd",
     "tap"
   ],
-  "author": "TJ Holowaychuk <tj@vision-media.ca>",
+  "author": "Liam Newman <bitwiseman@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/visionmedia/mocha.git"
+    "url": "git://github.com/mocha-breve/mocha-breve.git"
   },
   "main": "./index",
   "bin": {
