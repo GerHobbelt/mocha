@@ -2,20 +2,19 @@
 
 # Mocha-breve
 
-Mocha is a simple, flexible, fun JavaScript test framework for node.js and the browser.  It is awesome and everyone should use it.
+[Mocha](https://github.com/visionmedia/mocha) is a simple, flexible, fun JavaScript test framework for node.js and the browser.  It is awesome and everyone should use it.
 
-After waiting for three weeks for a pull request to get feedback, it seemed to me like the mocha project itself might be experiencing a scaling problem due to there being only one owner.  I couldn't get any traction on proposed fixes for the scaling problem, so I decided to try an experiment.  
+Mocha-breve is a fork of mocha that will be owned by a team rather than one person, and thus avoid the scaling problem of have only one owner who does everything.  I intend for this project to produce fixes and enhancements that can be merged into back mocha as time permits. 
 
-Mocha-breve is a fork of mocha that will be owned by a (small) team rather than one person.  If I'm the only one who thinks this is a good idea, the project will fizzle and die.  If not, people will contribute and maybe a few will be willing to share the load for reviewing and approving changes.  Then this project will be an channel that produce fixes and enhancements that will hopefully be merged into the core mocha at some point in the future.
+If I'm the only one who thinks this is a good idea, the project will fizzle and die, so be it.  If not, other people will contribute and maybe a few will be willing to share the load for reviewing and approving changes.  
 
+## Documentation
 
-
-(Look I haven't even changed the links yet.) 
-
-For more information view the [documentation](http://visionmedia.github.io/mocha).
-
+For more information view the [documentation](http://mocha-breve.github.io/mocha-breve).
 
 ## Links
+
+(Look I haven't even changed these links yet.) 
 
   - [Google Group](http://groups.google.com/group/mochajs)
   - [Wiki](https://github.com/visionmedia/mocha/wiki)
