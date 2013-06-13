@@ -4,9 +4,9 @@
 
 [Mocha](https://github.com/visionmedia/mocha) is a simple, flexible, fun JavaScript test framework for node.js and the browser.  It is awesome and everyone should use it.
 
-Mocha-breve is a fork of mocha that will be owned by a team rather than one person, and thus avoid the scaling problem of have only one owner who does everything.  I intend for this project to produce fixes and enhancements that can be merged into back mocha as time permits. 
+Mocha-breve is a fork of mocha that will be owned by a team rather than one person, and thus avoid the scaling problem of having only one owner who does everything. I intend for this project to produce fixes and enhancements that can be merged back into mocha as time permits. 
 
-If I'm the only one who thinks this is a good idea, the project will fizzle and die, so be it.  If not, other people will contribute and maybe a few will be willing to share the load for reviewing and approving changes.  
+If I'm the only one who thinks this is a good idea, the project will fizzle and die, so be it. If not, other people will contribute and maybe a few will be willing to share the load for reviewing and approving changes.
 
 ## Documentation
 
