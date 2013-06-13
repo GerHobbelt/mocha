@@ -1,8 +1,26 @@
- [![Build Status](https://secure.travis-ci.org/visionmedia/mocha.png)](http://travis-ci.org/visionmedia/mocha)
+[![Build Status](https://secure.travis-ci.org/mocha-breve/mocha-breve.png)](http://travis-ci.org/mocha-breve/mocha-breve)
 
-  [![Mocha test framework](http://f.cl.ly/items/3l1k0n2A1U3M1I1L210p/Screen%20Shot%202012-02-24%20at%202.21.43%20PM.png)](http://visionmedia.github.io/mocha)
+# Mocha-breve
 
-  Mocha is a simple, flexible, fun JavaScript test framework for node.js and the browser. For more information view the [documentation](http://visionmedia.github.io/mocha).
+Mocha is a simple, flexible, fun JavaScript test framework for node.js and the browser.  It is awesome and everyone should use it.
+
+After waiting for three weeks for a pull request to get feedback, it seemed to me like the mocha project itself might be experiencing a scaling problem due to there being only one owner.  I couldn't get any traction on proposed fixes for the scaling problem, so I decided to try an experiment.  
+
+Mocha-breve is a fork of mocha that will be owned by a (small) team rather than one person.  If I'm the only one who thinks this is a good idea, the project will fizzle and die.  If not, people will contribute and maybe a few will be willing to share the load for reviewing and approving changes.  Then this project will be an channel that produce fixes and enhancements that will hopefully be merged into the core mocha at some point in the future.
+
+
+
+(Look I haven't even changed the links yet.) 
+
+For more information view the [documentation](http://visionmedia.github.io/mocha).
+
+
+## Links
+
+  - [Google Group](http://groups.google.com/group/mochajs)
+  - [Wiki](https://github.com/visionmedia/mocha/wiki)
+  - Mocha [Extensions and reporters](https://github.com/visionmedia/mocha/wiki)
+  
 
 ## Contributors
 
