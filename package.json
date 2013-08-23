@@ -1,6 +1,6 @@
 {
   "name": "mocha",
-  "version": "1.12.1-skipsOnFailure",
+  "version": "1.12.1-skip",
   "description": "simple, flexible, fun test framework",
   "keywords": [
     "mocha",
