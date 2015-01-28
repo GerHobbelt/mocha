@@ -4283,7 +4283,7 @@ function Runnable(title, fn) {
   this.fn = fn;
   this.async = fn && fn.length;
   this.sync = ! this.async;
-  this._timeout = 2000;
+  this._timeout = 60000;
   this._slow = 75;
   this._enableTimeouts = true;
   this.timedOut = false;
@@ -5254,7 +5254,7 @@ function Suite(title, parentContext) {
   this._afterEach = [];
   this._afterAll = [];
   this.root = !title;
-  this._timeout = 2000;
+  this._timeout = 60000;
   this._enableTimeouts = true;
   this._slow = 75;
   this._bail = false;

@@ -66,7 +66,7 @@ describe('Suite', function(){
 
     describe('when no argument is passed', function(){
       it('should return the timeout value', function(){
-        this.suite.timeout().should.equal(2000);
+        this.suite.timeout().should.equal(60000);
       });
     });
 
