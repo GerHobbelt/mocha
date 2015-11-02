@@ -31,7 +31,7 @@ lib-cov:
 	@jscoverage lib $@
 
 lint:
-	@$(ESLINT) $(SRC)
+	@sh $(ESLINT) $(SRC)
 
 test: lint test-unit
 
