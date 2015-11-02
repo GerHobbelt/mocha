@@ -37,6 +37,8 @@ test: lint test-unit
 
 test-all: lint test-bdd test-tdd test-qunit test-exports test-unit test-integration test-jsapi test-compilers test-glob test-requires test-reporters test-only
 
+test-w32: lint test-bdd test-tdd test-qunit test-exports                            test-jsapi test-compilers test-glob test-requires test-reporters test-only
+
 test-jsapi:
 	@node test/jsapi
 
