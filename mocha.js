@@ -4230,7 +4230,11 @@ Runnable.prototype.run = function(fn) {
         }
         return done(new Error('done() invoked with non-Error: ' + err));
       }
-      done();
+      if (finished && ctx && ctx.test) {
+        done(ctx.test.err);
+      } else {
+        done();
+      }
     });
   }
 };
