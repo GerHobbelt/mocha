@@ -12,8 +12,25 @@
       }
     </script>
     <script src="ui.js"></script>
+    <style>
+.test-menu li {
+  display: inline-block;
+
+  font: 12px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 2em 1em;
+}
+    </style>
   </head>
   <body>
+    <ul class="test-menu">
+      <li>Tests:</li>
+      <li><a href="grep.html">grep</a></li>
+      <li><a href="index.html">index</a></li>
+      <li><a href="large.html">large</a></li>
+      <li><a href="opts.html">opts</a></li>
+      <li><a href="stack-trace.html">stack-trace</a></li>
+      <li><a href="ui.html">ui</a></li>
+    </ul>
     <div id="mocha"></div>
   <script>
       (function(window) {
