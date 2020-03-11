@@ -281,7 +281,7 @@
     "glob": "5.0.15",
     "growl": "1.8.1",
     "jade": "1.11.0",
-    "mkdirp": "0.5.1",
+    "mkdirp": "1.0.0",
     "supports-color": "3.1.2"
   },
   "devDependencies": {
